@@ -1,8 +1,8 @@
 # Creación de red
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network
 
-resource "azurerm_virtual_network" "myNet" {
-    name                = "kubernetesnet"
+resource "azurerm_virtual_network" "azureNetwork" {
+    name                = "kubernetesNetwork"
     address_space       = ["10.0.0.0/16"]
     location            = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
@@ -15,10 +15,10 @@ resource "azurerm_virtual_network" "myNet" {
 # Creación de subnet
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet
 
-resource "azurerm_subnet" "mySubnet" {
-    name                   = "terraformsubnet"
+resource "azurerm_subnet" "azureSubnet" {
+    name                   = "terraformSubnet"
     resource_group_name    = azurerm_resource_group.rg.name
-    virtual_network_name   = azurerm_virtual_network.myNet.name
+    virtual_network_name   = azurerm_virtual_network.azureNetwork.name
     address_prefixes       = ["10.0.1.0/24"]
 
 }
@@ -26,17 +26,19 @@ resource "azurerm_subnet" "mySubnet" {
 # Create NIC
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface
 
-resource "azurerm_network_interface" "myNic1" {
-  name                = "vmnic1"  
+resource "azurerm_network_interface" "nickGroup" {
+  count               = length(var.machines)
+  name                = "vmnic-${var.machines[count.index]}"  
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
     ip_configuration {
-    name                           = "myipconfiguration1"
-    subnet_id                      = azurerm_subnet.mySubnet.id 
+    name                           = "ipconfiguration-${var.machines[count.index]}"
+    subnet_id                      = azurerm_subnet.azureSubnet.id 
     private_ip_address_allocation  = "Static"
-    private_ip_address             = "10.0.1.10"
-    public_ip_address_id           = azurerm_public_ip.myPublicIp1.id
+    private_ip_address             = "10.0.1.${count.index + 10}"
+    public_ip_address_id           = "${element(azurerm_public_ip.publicGroup.*.id, count.index + 1 )}"
+
   }
 
     tags = {
@@ -48,12 +50,13 @@ resource "azurerm_network_interface" "myNic1" {
 # IP pública
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip
 
-resource "azurerm_public_ip" "myPublicIp1" {
-  name                = "vmip1"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Dynamic"
-  sku                 = "Basic"
+resource "azurerm_public_ip" "publicGroup" {
+    count               = length(var.machines)
+    name                = "${var.machines[count.index]}${format("ip%02d", count.index + 1)}"
+    location            = azurerm_resource_group.rg.location
+    resource_group_name = azurerm_resource_group.rg.name
+    allocation_method   = "Dynamic"
+    sku                 = "Basic"
 
     tags = {
         environment = "CP2"
