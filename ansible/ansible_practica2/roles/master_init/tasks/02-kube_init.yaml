@@ -1,0 +1,32 @@
+- name: Configuramos kudeadm
+  shell: |
+          kubeadm config images pull
+
+- name: Iniciar Kubernetes
+  shell: |
+          kubeadm init --pod-network-cidr "{{networkcidr}}"
+
+- name: Get token
+  shell: |
+          kubeadm token create --print-join-command
+  register: kube_token
+
+- name: Applying token to fact.
+  set_fact:
+         kube_token: "{{kube_token.stdout_lines[0]}}"
+
+- name: Configuramos kudeadm
+  shell: |
+         export KUBECONFIG=/etc/kubernetes/admin.conf
+
+- name: Configuramos kudeadm
+  shell: |
+         mkdir -p /root/.kube
+
+- name: Configuramos kudeadm
+  shell: |
+         cp -i /etc/kubernetes/admin.conf /root/.kube/config
+
+- name: Configuramos kudeadm
+  shell: |
+         chown $(id -u):$(id -g) /root/.kube/config

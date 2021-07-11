@@ -1,0 +1,9 @@
+- name: disable swap 
+  command: swapoff -a
+  when: ansible_swaptotal_mb > 0 # gather_fact should be set to true
+
+- name: Remove current swaps from fstab. # Using a regex expression with state:absen t equal to remove line
+  lineinfile:
+    dest: /etc/fstab
+    regexp: '(?i)^([^#][\S]+\s+(none|swap)\s+swap.*)'
+    state: absent

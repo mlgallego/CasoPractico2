@@ -1,0 +1,20 @@
+- name: stablish timezone 
+  timezone:
+    name: "{{timezone}}"
+
+- name: install chrony 
+  dnf:
+    name: chrony
+    state: latest
+
+- name: Enable and start chronyd
+  systemd:
+   name: chronyd
+   state: started
+   enabled: yes
+
+- name: Ntp as true
+  shell: |
+         timedatectl set-ntp true
+
+   

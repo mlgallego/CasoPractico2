@@ -1,0 +1,28 @@
+- name: start kube_master
+  hosts: [master]
+  vars_files:
+   - "group_vars/kube.yaml"
+  become: true
+  gather_facts: true
+  roles:
+   #- clean_kube #Solo si está ya ejecutandose borrar para 1º ejecucion       
+   - master_init
+
+- name: start calico
+  hosts: [master]
+  vars_files:
+   - "group_vars/kube.yaml"
+  become: true
+  roles:
+   #- clean_kube #Solo si está ya ejecutandose borrar para 1º ejecucion       
+   - calico
+
+- name: start kube_worker
+  hosts: [worker]
+  vars_files:
+   - "group_vars/kube.yaml"
+  become: true
+  #gather_facts: true
+  roles:
+   #- clean_kube #Solo si está ya ejecutandose borrar para 1º ejecucion       
+   - worker_init

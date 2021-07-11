@@ -1,0 +1,13 @@
+- name: Master's firewall configuration "Po
+  firewalld:
+    port: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items: #looping
+     - 10250/tcp
+     - 30000-32767/tcp
+
+- name: reload service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded

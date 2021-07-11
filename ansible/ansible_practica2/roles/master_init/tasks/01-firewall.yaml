@@ -1,0 +1,27 @@
+- name: Master's firewall configuration "Po
+  firewalld:
+    port: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items: #looping
+     - 6443/tcp
+     - 2379-2380/tcp
+     - 10250/tcp
+     - 10251/tcp
+     - 10252/tcp
+     - 10255/tcp
+
+- name: Master's firewall configuration "Rich rule"
+  firewalld:
+    rich_rule: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items: #looping
+     - 'rule family=ipv4 source address=192.168.1.111/32 accept'
+     - 'rule family=ipv4 source address=192.168.1.112/32 accept' 
+     - 'rule family=ipv4 source address=172.17.0.0/16 accept'
+
+- name: reload service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
