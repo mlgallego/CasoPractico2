@@ -27,6 +27,7 @@ resource "azurerm_network_security_group" "securityGroup" {
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association
 
 resource "azurerm_network_interface_security_group_association" "secGroupAssociation" {
+    count                     = length(var.machines)
     network_interface_id      = "${element(azurerm_network_interface.nickGroup.*.id, count.index)}"
     network_security_group_id = azurerm_network_security_group.securityGroup.id
 

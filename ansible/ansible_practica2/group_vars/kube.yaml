@@ -1,3 +1,6 @@
 ---
-token: mikube.tokenv098721v212
-networkcidr: 192.169.0.0/16
+#Network configuration
+networkcidr: 192.168.0.0/16
+
+#App congiguration
+ingress: https://raw.githubusercontent.com/haproxytech/kubernetes-ingress/v1.5/deploy/haproxy-ingress.yaml

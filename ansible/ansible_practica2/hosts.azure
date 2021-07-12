@@ -1,0 +1,12 @@
+[all:vars]
+ansible_user=adminUsername
+[master]
+
+20.105.194.58
+[worker]
+20.86.106.4
+
+
+[nfs]
+nfs.acme.es
+

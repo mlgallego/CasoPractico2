@@ -1,2 +1,2 @@
 - name: Worker join  Kubernetes
-  shell: "{{hostvars['master.acme.es']['kube_token']}}"
+  shell: "{{hostvars['master']['kube_token']}}"
