@@ -15,7 +15,7 @@
   become: true
   roles:
    #- clean_kube #Solo si está ya ejecutandose borrar para 1º ejecucion       
-   - calico
+   - sdn
 
 - name: start kube_worker
   hosts: [worker]
@@ -26,3 +26,12 @@
   roles:
    #- clean_kube #Solo si está ya ejecutandose borrar para 1º ejecucion       
    - worker_init
+
+- name: start ingress
+  hosts: [master]
+  vars_files:
+   - "group_vars/kube.yaml"
+  become: true
+  roles:
+   #- clean_kube #Solo si está ya ejecutandose borrar para 1º ejecucion
+   - ingress

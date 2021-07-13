@@ -1,10 +1,9 @@
 [all:vars]
 ansible_user=adminUsername
 [master]
-
-20.105.194.58
+mastermlgm01.westeurope.cloudapp.azure.com
 [worker]
-20.86.106.4
+workermlgm02.westeurope.cloudapp.azure.com
 
 
 [nfs]

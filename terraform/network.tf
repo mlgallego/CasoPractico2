@@ -53,6 +53,7 @@ resource "azurerm_network_interface" "nickGroup" {
 resource "azurerm_public_ip" "publicGroup" {
     count               = length(var.machines)
     name                = "${var.machines[count.index]}${format("ip%02d", count.index + 1)}"
+    domain_name_label   = "${var.machines[count.index]}${format("mlgm%02d", count.index + 1)}"
     location            = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
     allocation_method   = "Dynamic"
