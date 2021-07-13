@@ -1,0 +1,14 @@
+- name: Master's firewall configuration "Po
+  firewalld:
+    service: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items: #looping
+     - nfs
+     - rpc-bind
+     - mountd
+
+- name: reload service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded

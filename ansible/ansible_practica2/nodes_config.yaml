@@ -1,10 +1,9 @@
 - name: initial setup
-  hosts: [master, worker, nfs]
+  hosts: [nfs]
   vars_files:
     - "group_vars/config_vars.yaml"
   become: true
   gather_facts: true
   roles:
-   #- system_update       
-   #- time_sync
-   - set_up_nodes
+    - nfs_init
+

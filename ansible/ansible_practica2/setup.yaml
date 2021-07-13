@@ -6,5 +6,5 @@
   gather_facts: true
   roles:
    - system_update       
-#   - time_sync
+   - time_sync
    - set_up_nodes

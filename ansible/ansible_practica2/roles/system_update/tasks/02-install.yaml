@@ -4,5 +4,6 @@
       - nfs-utils
       - nfs4-acl-tools
       - wget
+      - net-tools
     state: latest
 
