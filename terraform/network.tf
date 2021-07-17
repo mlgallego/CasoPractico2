@@ -3,7 +3,7 @@
 
 resource "azurerm_virtual_network" "azureNetwork" {
     name                = "kubernetesNetwork"
-    address_space       = ["10.0.0.0/16"]
+    address_space       = [var.ip_network]
     location            = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
 
@@ -19,7 +19,7 @@ resource "azurerm_subnet" "azureSubnet" {
     name                   = "terraformSubnet"
     resource_group_name    = azurerm_resource_group.rg.name
     virtual_network_name   = azurerm_virtual_network.azureNetwork.name
-    address_prefixes       = ["10.0.1.0/24"]
+    address_prefixes       = [var.ip_subnet]
 
 }
 
@@ -36,8 +36,8 @@ resource "azurerm_network_interface" "nickGroup" {
     name                           = "ipconfiguration-${var.machines[count.index]}"
     subnet_id                      = azurerm_subnet.azureSubnet.id 
     private_ip_address_allocation  = "Static"
-    private_ip_address             = "10.0.1.${count.index + 10}"
-    public_ip_address_id           = "${element(azurerm_public_ip.publicGroup.*.id, count.index + 1 )}"
+    private_ip_address             = var.machine_ip[count.index]
+    public_ip_address_id           = "${element(azurerm_public_ip.publicGroup.*.id, count.index )}"
 
   }
 
@@ -51,9 +51,10 @@ resource "azurerm_network_interface" "nickGroup" {
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip
 
 resource "azurerm_public_ip" "publicGroup" {
+
     count               = length(var.machines)
-    name                = "${var.machines[count.index]}${format("ip%02d", count.index + 1)}"
-    domain_name_label   = "${var.machines[count.index]}${format("mlgm%02d", count.index + 1)}"
+    name                = "${var.machines[count.index]}ip"
+    domain_name_label   = "${var.machines[count.index]}mlgm"
     location            = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
     allocation_method   = "Dynamic"
