@@ -16,10 +16,7 @@
     rich_rule: "{{ item }}"
     permanent: true
     state: enabled
-  with_items: #looping
-     - 'rule family=ipv4 source address=10.0.0.11/32 accept'
-     - 'rule family=ipv4 source address=192.168.1.112/32 accept' 
-     - 'rule family=ipv4 source address=172.17.0.0/16 accept'
+  with_items: "{{rich_rule_ip}}"
 
 - name: reload service firewalld
   systemd:

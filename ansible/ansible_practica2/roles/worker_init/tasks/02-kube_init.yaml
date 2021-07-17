@@ -1,2 +1,2 @@
 - name: Worker join  Kubernetes
-  shell: "{{hostvars['mastermlgm01.westeurope.cloudapp.azure.com']['kube_token']}}"
+  shell: "{{hostvars['mastermlgm.westeurope.cloudapp.azure.com']['kube_token']}}"

@@ -1,5 +1,5 @@
 - name: initial setup
-  hosts: [master,worker]
+  hosts: [all]
   vars_files:
     - "group_vars/config_vars.yaml"
   become: true
@@ -7,4 +7,3 @@
   roles:
    - system_update       
    - time_sync
-   - set_up_nodes

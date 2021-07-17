@@ -50,24 +50,3 @@
     fstype: xfs
     state: mounted
 
-#- name: Enable and start nfs-server
-#  systemd:
-#   name: chronyd
-#   state: started
-#   enabled: yes
-
-#- name: Add a line to a file if the file does not exist, without passing regexp
-#  lineinfile:
-#    path: /etc/exports
-#    line: "/srv/nfs {{item}}(rw,sync)"
-#    create: yes
-#  with_items:
-#    - 10.0.1.10
-#    - 10.0.1.11
-#    - 10.0.1.12
-
-#- name: reload service exportfs
-#  shell: exportfs -r
-
-#- name: reload service exportfs
-#  shell: exportfs -s

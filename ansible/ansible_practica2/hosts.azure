@@ -1,10 +1,10 @@
 [all:vars]
 ansible_user=adminUsername
 [master]
-mastermlgm01.westeurope.cloudapp.azure.com
+mastermlgm.westeurope.cloudapp.azure.com
 [worker]
-workermlgm02.westeurope.cloudapp.azure.com
+worker01mlgm.westeurope.cloudapp.azure.com
 
 
 [nfs]
-nfsmlgm01.westeurope.cloudapp.azure.com
+mastermlgm.westeurope.cloudapp.azure.com
