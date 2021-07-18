@@ -1,0 +1,23 @@
+- name: Desinstala los paquetes podman y buildah por un conficto "conflictw"
+  dnf:
+    name: 
+      - podman
+      - buildah
+    state: absent   
+
+- name: Añade el repo de docker
+  shell: |
+    dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+
+- name: Instala Docker desde un repositorio remoto
+  dnf:
+    name: docker-ce-20.10.6-3.el8
+    state: present
+
+- name: Habilita docker
+  systemd:
+   name: docker
+   state: started
+   enabled: yes
+
+

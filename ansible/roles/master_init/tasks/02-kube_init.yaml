@@ -1,0 +1,32 @@
+- name: Actualización de imágenes
+  shell: |
+          kubeadm config images pull
+
+- name: Inicialización de Kubernetes
+  shell: |
+          kubeadm init --pod-network-cidr "{{networkcidr}}"
+
+- name: Obtención del token
+  shell: |
+          kubeadm token create --print-join-command
+  register: kube_token
+
+- name: Guardamos el comando join.
+  set_fact:
+         kube_token: "{{kube_token.stdout_lines[0]}}"
+
+- name: Configuramos kubectl para operar el cluster
+  shell: |
+         export KUBECONFIG=/etc/kubernetes/admin.conf
+
+- name:  Creación de nueva carpeta .kube
+  shell: |
+         mkdir -p /root/.kube
+
+- name: Copiamos permisos
+  shell: |
+         cp -i /etc/kubernetes/admin.conf /root/.kube/config
+
+- name: Autorización al user root
+  shell: |
+         chown $(id -u):$(id -g) /root/.kube/config

@@ -1,0 +1,14 @@
+- name: Configura el firewall del nfs
+  firewalld:
+    service: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items: #looping
+     - nfs
+     - rpc-bind
+     - mountd
+
+- name: Recarga el sevicio firewalld
+  systemd:
+    name: firewalld
+    state: reloaded

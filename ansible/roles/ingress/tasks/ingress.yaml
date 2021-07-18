@@ -1,0 +1,3 @@
+- name: Configuramos Ingress
+  shell: |
+          kubectl apply -f "{{ingress}}"

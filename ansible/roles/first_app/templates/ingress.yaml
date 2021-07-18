@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jupyter
+  namespace: jupyter
+  labels:
+    app: jupyter
+spec:
+  rules:
+  - host: mastermlgm.westeurope.cloudapp.azure.com
+    http:
+      paths:
+      - path: /
+        pathType: "Prefix"
+        backend:
+          service:
+            name: jupyter-service
+            port:
+              number: 80

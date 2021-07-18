@@ -1,0 +1,20 @@
+- name: Establece la zona horaria
+  timezone:
+    name: "{{timezone}}"
+
+- name: Instala chrony 
+  dnf:
+    name: chrony
+    state: latest
+
+- name: Habilita e inicia chronyd
+  systemd:
+   name: chronyd
+   state: started
+   enabled: yes
+
+- name: Setea Ntp a true
+  shell: |
+         timedatectl set-ntp true
+
+   

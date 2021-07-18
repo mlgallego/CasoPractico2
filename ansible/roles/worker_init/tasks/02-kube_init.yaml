@@ -1,0 +1,2 @@
+- name: Obtención y ejecución del comando join
+  shell: "{{hostvars['mastermlgm.westeurope.cloudapp.azure.com']['kube_token']}}"

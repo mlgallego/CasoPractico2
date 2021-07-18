@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter
+  namespace: jupyter
+  labels:
+    app: jupyter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyter
+  template:
+    metadata:
+      labels:
+        app: jupyter
+    spec:
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
+      containers:
+      - name: jupyter
+        image: jupyter/datascience-notebook:latest
+        ports:
+        - containerPort: 8888
+        command:
+            - /bin/bash
+            - -c
+            - |
+              start.sh jupyter lab --LabApp.token='practica2' --LabApp.ip='0.0.0.0' --LabApp.allow_root=True
+        volumeMounts:
+        - name: site-pvc
+          mountPath: /home/jovyan/work
+      volumes:
+      - name: site-pvc
+        persistentVolumeClaim:
+          claimName: nfs-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: jupyter-service
+    namespace: jupyter
+spec:
+    selector:
+      app: jupyter
+    ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8888

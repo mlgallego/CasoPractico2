@@ -1,0 +1,46 @@
+- name: Configuración inicial de los nodos
+  hosts: [master,worker]
+  vars_files:
+    - "group_vars/config_vars.yaml"
+  become: true
+  gather_facts: true
+  roles:
+   - set_up_nodes
+
+- name: Inicializar kube_master
+  hosts: [master]
+  vars_files:
+   - "group_vars/kube.yaml"
+  become: true
+  gather_facts: true
+  roles:
+   #- clean_kube #Solo si está ya ejecutandose borrar para 1º ejecucion       
+   - master_init
+
+- name: Inicializar calico
+  hosts: [master]
+  vars_files:
+   - "group_vars/kube.yaml"
+  become: true
+  roles:
+   #- clean_kube #Solo si está ya ejecutandose borrar para 1º ejecucion       
+   - sdn
+
+- name: Inicializar kube_worker
+  hosts: [worker]
+  vars_files:
+   - "group_vars/kube.yaml"
+  become: true
+  #gather_facts: true
+  roles:
+   #- clean_kube #Solo si está ya ejecutandose borrar para 1º ejecucion       
+   - worker_init
+
+- name: Inicializar ingress
+  hosts: [master]
+  vars_files:
+   - "group_vars/kube.yaml"
+  become: true
+  roles:
+   #- clean_kube #Solo si está ya ejecutandose borrar para 1º ejecucion
+   - ingress

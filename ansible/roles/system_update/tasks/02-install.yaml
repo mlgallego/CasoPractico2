@@ -1,0 +1,9 @@
+- name: instalación de nfs and wget utils
+  dnf:
+    name: 
+      - nfs-utils
+      - nfs4-acl-tools
+      - wget
+      - net-tools
+    state: latest
+

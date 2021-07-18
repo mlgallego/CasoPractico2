@@ -1,0 +1,9 @@
+- name: initial nfs 
+  hosts: [nfs]
+  vars_files:
+    - "group_vars/kube.yaml"
+  become: true
+  gather_facts: true
+  roles:
+    - nfs_init
+

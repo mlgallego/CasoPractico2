@@ -1,0 +1,13 @@
+- name: Configura el firewall del worker
+  firewalld:
+    port: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items: #looping
+     - 10250/tcp
+     - 30000-32767/tcp
+
+- name: Recarga el servicio de firewalld
+  systemd:
+    name: firewalld
+    state: reloaded

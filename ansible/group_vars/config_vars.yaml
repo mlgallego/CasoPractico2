@@ -1,0 +1,4 @@
+---
+timezone: Europe/Madrid
+docker_repo: https://download.docker.com/linux/centos/docker-ce.repo
+docker_version: 20.10.6-3.el8

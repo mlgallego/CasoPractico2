@@ -1,0 +1,24 @@
+- name: Configura el firewall del master
+  firewalld:
+    port: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items: #looping
+     - 6443/tcp
+     - 2379-2380/tcp
+     - 10250/tcp
+     - 10251/tcp
+     - 10252/tcp
+     - 10255/tcp
+
+- name: Configuracion del firewall master con las "Rich rule"
+  firewalld:
+    rich_rule: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items: "{{rich_rule_ip}}"
+
+- name: Recarga el servicio de firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
