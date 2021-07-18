@@ -55,16 +55,16 @@ XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts-azure setup.yaml
 
 3. Desplegamos el playbook start_nfs.yaml
 ```console
-XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts-azure start_nfs.yaml
+XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts.azure start_nfs.yaml
 ```
 4. Desplegamos el playbook start_kube.yaml
 ```console
-XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts-azure start_kube.yaml
+XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts.azure start_kube.yaml
 ```
 
 # Despliegue de la aplicación JupyterNotebook
 ```console
-XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts-azure deploy_first_app.yaml
+XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts.azure deploy_first_app.yaml
 ```
 > **_NOTE:_** Para acceder a la aplicación, debemos incluir tu IP pública en Azure para permitir el tráfico
 
