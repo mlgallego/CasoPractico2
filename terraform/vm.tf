@@ -1,6 +1,7 @@
-# Creamos una máquina virtual
-# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine
+											                                            [modify]
 
+
+# Creación de máquinas virtuales [1]
 resource "azurerm_linux_virtual_machine" "vms" {
     count               = length(var.machines)
     name                = "${var.machines[count.index]}-azure-vm"
@@ -44,6 +45,7 @@ resource "azurerm_linux_virtual_machine" "vms" {
 
 }
 
+# Creación adicional de disco duro para el NFS [2]
 resource "azurerm_managed_disk" "nfs_disk" {
   name                 = "nfs_disk01"
   location             = azurerm_resource_group.rg.location
@@ -53,9 +55,16 @@ resource "azurerm_managed_disk" "nfs_disk" {
   disk_size_gb         = 10
 }
 
+# Adjuntar el disco adicional a la máquina que ha sido seleccionada en el archivo vars.tf  
+# haciendo referencia a su posición en la lista de la variable machines [3]
 resource "azurerm_virtual_machine_data_disk_attachment" "managed_disk_attach" {
   managed_disk_id    = azurerm_managed_disk.nfs_disk.id
   virtual_machine_id = azurerm_linux_virtual_machine.vms.*.id[var.nfs_machine]
   lun                = 10
   caching            = "ReadWrite"
 }
+
+# Enlace a los recursos:
+# [1]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machinep
+# [2]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/managed_disk
+# [3]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_data_disk_attachment
