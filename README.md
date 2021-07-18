@@ -66,7 +66,7 @@ XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts-azure start_kube
 ```console
 XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts-azure deploy_first_app.yaml
 ```
-> **_NOTE:_** Para acceder a la aplicación, debemos incluir nuestra IP en Azure para permitir el tráfico
+> **_NOTE:_** Para acceder a la aplicación, debemos incluir tu IP pública en Azure para permitir el tráfico
 
 Volevemos a conectarnos por ssh 
 ```console
@@ -76,3 +76,10 @@ ejecutamos
 ```console
 adminUsername@master-azure-vm]: sudo kubectl get svc --namespace=haproxy-controller
 ```
+> **_NOTE:_** Obtenemos el puerto
+
+```console
+mastermlgm.westeurope.cloudapp.azure.com:[PUERTO_OBTENIDO]
+```
+
+> **_NOTE:_** token/password para poder acceder al JupyterNotebook es **practica2**
