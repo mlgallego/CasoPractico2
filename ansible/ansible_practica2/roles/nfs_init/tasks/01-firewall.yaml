@@ -1,4 +1,4 @@
-- name: Master's firewall configuration "Po
+- name: Configura el firewall del nfs
   firewalld:
     service: "{{ item }}"
     permanent: true
@@ -8,7 +8,7 @@
      - rpc-bind
      - mountd
 
-- name: reload service firewalld
+- name: Recarga el sevicio firewalld
   systemd:
     name: firewalld
     state: reloaded
