@@ -15,18 +15,18 @@
   set_fact:
          kube_token: "{{kube_token.stdout_lines[0]}}"
 
-- name: Configuramos kudeadm
+- name: Configuramos kubectl para operar el cluster
   shell: |
          export KUBECONFIG=/etc/kubernetes/admin.conf
 
-- name: Configuramos kudeadm
+- name:  Creación de nueva carpeta .kube
   shell: |
          mkdir -p /root/.kube
 
-- name: Configuramos kudeadm
+- name: Copiamos permisos
   shell: |
          cp -i /etc/kubernetes/admin.conf /root/.kube/config
 
-- name: Configuramos kudeadm
+- name: Autorización al user root
   shell: |
          chown $(id -u):$(id -g) /root/.kube/config
