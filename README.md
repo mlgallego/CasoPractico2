@@ -49,22 +49,22 @@ XXX@Azure: terraform destroy
 
 2. Desplegamos el playbook setup.yaml
 ```console
-XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts.azure setup.yaml
+XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts setup.yaml
 ```
 > **_NOTE:_** Deberemos introducir “yes” tantas veces como maquinas tenga nuestro entorno, por defecto 3 veces
 
 3. Desplegamos el playbook start_nfs.yaml
 ```console
-XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts.azure start_nfs.yaml
+XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts start_nfs.yaml
 ```
 4. Desplegamos el playbook start_kube.yaml
 ```console
-XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts.azure start_kube.yaml
+XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts start_kube.yaml
 ```
 
 # Despliegue de la aplicación JupyterNotebook
 ```console
-XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts.azure deploy_first_app.yaml
+XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts deploy_first_app.yaml
 ```
 > **_NOTE:_** Para acceder a la aplicación, debemos incluir tu IP pública en Azure para permitir el tráfico
 
