@@ -27,10 +27,10 @@ spec:
             - /bin/bash
             - -c
             - |
-              start.sh jupyter lab --LabApp.token='Practica2' --LabApp.ip='0.0.0.0' --LabApp.allow_root=True
+              start.sh jupyter lab --LabApp.token='practica2' --LabApp.ip='0.0.0.0' --LabApp.allow_root=True
         volumeMounts:
         - name: site-pvc
-          mountPath: /home/jovyan 
+          mountPath: /home/jovyan/work
       volumes:
       - name: site-pvc
         persistentVolumeClaim:
