@@ -9,7 +9,7 @@ variable "location" {
 variable "storage_account" {
   type = string
   description = "Nombre para la storage account"
-  default = "<STORAGE ACCOUNT NAME>"
+  default = "accstor784521272"
 }
 
 variable "public_key_path" {
