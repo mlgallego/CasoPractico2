@@ -26,7 +26,7 @@ resource "azurerm_resource_group" "rg" {
 
 # Creación de cuenta de almacenamiento de Azure [3]
 resource "azurerm_storage_account" "storageAccount" {
-    name                     = "accstor78452126"      # Nombre de la cuenta de almacenamiento.
+    name                     = var.storage_account    # Nombre de la cuenta de almacenamiento.
     							                                    #Debe ser único en todo Azure,
                                                       #no solo dentro del grupo de recursos. 
     resource_group_name      = azurerm_resource_group.rg.name
