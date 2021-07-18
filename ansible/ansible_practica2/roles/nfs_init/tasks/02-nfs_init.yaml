@@ -1,4 +1,4 @@
-- name: identifica el primer disco libre #Codigo del profesor en el foro
+- name: Identifica el primer disco libre #Codigo del profesor en el foro
   set_fact:
     disks: "/dev/{{ item.key }}"
   when:
@@ -13,37 +13,37 @@
      - item.key | regex_search ("vd|sd")
   with_dict: "{{ ansible_devices }}"
 
-- name: mostrar
+- name: Muestra el disco vacío
   debug: msg="Disco vacio {{ disks }}"
   when: disks is defined
 
 
-- name: Physical volume creation
+- name: Crea el volumen físico
   shell: pvcreate "{{ disks }}"
 
-- name: create vgp
+- name: Crea vgp
   lvg:
       vg: data_vg 
       pvs: "{{ disks }}"
 
-- name: Create a logical volume the size of all remaining space in the volume group
+- name: Crea un volumen lógico del tamaño de todo el espacio restante en el grupo de volúmenes
   lvol:
     vg: data_vg
     lv: nfs_lv
     size: 100%FREE
 
-- name:  crear el filesystem de tipo XFS
+- name:  Crear el filesystem de tipo XFS
   filesystem:
     fstype: xfs
     dev: /dev/data_vg/nfs_lv 
 
-- name: Create a directory if it does not exist
+- name: Crea un directorio si no existe
   file:
     path: /srv/nfs
     state: directory
 
 
-- name: Mount drive
+- name: Monta la unidad
   mount:
     src: /dev/data_vg/nfs_lv
     path: /srv/nfs 
