@@ -1,4 +1,5 @@
-#  
+#  Objetivo del projecto
+
 El objetivo de este proyecto es permitir a cualquier usuario familiarizarse con el despliegue de 
 una aplicación (JupyterNotebook) de forma automatizada en el entorno cloud de Azure empleando para ello: 
 - **Terraform**, como herramienta de código para el despliegue de infraestructura y
