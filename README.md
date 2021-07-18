@@ -1,7 +1,7 @@
 # El objetivo de este proyecto es permitir a cualquier usuario familiarizarse con el despliegue de 
 una aplicación de forma automatizada en el entorno cloud de Azure empleando para ello: 
 - **Terraform**, como herramienta de código para el despliegue de infraestructura y
-- ** Ansible** como software de gestión de configuración y despliegue de aplicaciones y 
+- **Ansible** como software de gestión de configuración y despliegue de aplicaciones y 
 
 # Terraform
 ## Arquitectura a desplegar en Terraform: 
