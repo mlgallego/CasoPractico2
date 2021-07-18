@@ -7,13 +7,13 @@ variable "location" {
 variable "vm_size" {
   type = list(string)
   description = "Tamaño de la máquina virtual"
-  default =  ["Standard_D2s_v3","Standard_D2s_v3"] 
+  default =  ["Standard_D2s_v3","Standard_D1_v2","Standard_D1_v2"] 
 }
 
 variable "machines" {
   type = list(string)
   description = "Máquina virtuales a crear"
-  default = ["master","worker01"] 
+  default = ["master","worker01","worker02"] 
 }
 variable "nfs_machine"{
   type = number
@@ -23,7 +23,7 @@ variable "nfs_machine"{
 variable "machine_ip"{
   type = list(string)
   description = "IP asignada a maquina (machines list)"
-  default = ["10.0.1.10","10.0.1.11"]
+  default = ["10.0.1.10","10.0.1.11","10.0.1.12"]
 }
 variable "ip_network"{
   type = string
