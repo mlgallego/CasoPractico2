@@ -1,4 +1,4 @@
-- name: Master's firewall configuration "Po
+- name: Configura el firewall del worker
   firewalld:
     port: "{{ item }}"
     permanent: true
@@ -7,7 +7,7 @@
      - 10250/tcp
      - 30000-32767/tcp
 
-- name: reload service firewalld
+- name: Recarga el servicio de firewalld
   systemd:
     name: firewalld
     state: reloaded
