@@ -1,5 +1,5 @@
 ---
 
-#- include_tasks: 01-firewall.yaml
-#- include_tasks: 02-kube_init.yaml
+- include_tasks: 01-firewall.yaml
+- include_tasks: 02-kube_init.yaml
 - include_tasks: 03-token.yaml

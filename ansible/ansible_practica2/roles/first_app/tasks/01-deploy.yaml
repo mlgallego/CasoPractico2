@@ -1,0 +1,31 @@
+- name: creamos directorio para el despligue
+  file:
+    path: myapps/first-app
+    state: directory
+
+- name: Copiar despliegue app
+  template:
+    src: "{{ item }}"
+    dest: myapps/first-app
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - nfs.yaml
+    - first_app.yaml
+    - ingress.yaml
+    - configmap.yaml
+
+- name: Creamos namespace de la aplicacion
+  shell: |
+         kubectl create namespace webapp-volumes 
+- name: Desplegamos la aplicacion
+  shell: |
+         kubectl apply -f myapps/first-app/{{ item }}
+  with_items:
+    - nfs.yaml
+    - first_app.yaml
+    - ingress.yaml
+    - configmap.yaml
+
+

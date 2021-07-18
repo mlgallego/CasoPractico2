@@ -9,10 +9,11 @@ ingress: https://raw.githubusercontent.com/haproxytech/kubernetes-ingress/v1.5/d
 nfs_private_ip:
  - 10.0.1.10
  - 10.0.1.11
+ - 10.0.1.12
 
 #DO NOT MODIFY FIrst item. Add all worker IP as a newline(Dfault all subnet has access)
 rich_rule_ip:
  - 'rule family=ipv4 source address=172.17.0.0/16 accept'
  - 'rule family=ipv4 source address=10.0.1.0/24 accept'
 
-mastertojoin: 'mastermlgm.westeurope.cloudapp.azure.com'
+

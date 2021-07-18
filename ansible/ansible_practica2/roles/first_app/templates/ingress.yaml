@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: volumes-ingress
+  namespace: webapp-volumes
+  labels:
+    app: webapp-volumes
+  annotations:
+      haproxy.org/path-rewrite: "/"
+spec:
+  rules:
+  - host: mastermlgm.westeurope.cloudapp.azure.com
+    http:
+      paths:
+      - path: /volumes
+        pathType: "Prefix"
+        backend:
+          service:
+            name: volumes-service
+            port:
+              number: 80

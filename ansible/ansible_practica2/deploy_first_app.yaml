@@ -1,0 +1,5 @@
+- name: Deploy setup
+  hosts: [master]
+  become: true
+  roles:
+   - first_app       

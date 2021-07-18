@@ -4,7 +4,7 @@ ansible_user=adminUsername
 mastermlgm.westeurope.cloudapp.azure.com
 [worker]
 worker01mlgm.westeurope.cloudapp.azure.com
-
+worker02mlgm.westeurope.cloudapp.azure.com
 
 [nfs]
 mastermlgm.westeurope.cloudapp.azure.com
