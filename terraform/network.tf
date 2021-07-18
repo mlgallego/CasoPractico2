@@ -61,7 +61,7 @@ resource "azurerm_public_ip" "publicGroup" {
 
 }
 
-# Enlaces a los recursos:
+# Enlace a los recursos:
 # [1]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network
 # [2]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet
 # [3]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface
