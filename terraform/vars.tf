@@ -3,14 +3,6 @@
 
 # Variables 
 
-# Selecciona la localización de Azure donde se va a levantar nuestra infraestructura
-# NOTA: cada localización tiene precios distintos
-variable "location" {
-  type = string
-  description = "Región de Azure donde crearemos la infraestructura"
-  default = "West Europe"
-}
-
 # Indica el listado de los nombres de las maquinas a crear. El orden de la 
 # lista influye en las siguientes variables: vm_size, nfs_machine, machine_ip
 variable "machines" {
