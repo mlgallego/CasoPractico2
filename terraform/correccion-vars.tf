@@ -1,7 +1,9 @@
+# Selecciona la localización de Azure donde se va a levantar nuestra infraestructura
+# NOTA: cada localización tiene precios distintos
 variable "location" {
   type = string
   description = "Región de Azure donde crearemos la infraestructura"
-  default = "<YOUR REGION>" 
+  default = "West Europe"
 }
 
 variable "storage_account" {
