@@ -1,21 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: volumes-ingress
-  namespace: webapp-volumes
+  name: jupyter
+  namespace: jupyter
   labels:
-    app: webapp-volumes
-  annotations:
-      haproxy.org/path-rewrite: "/"
+    app: jupyter
 spec:
   rules:
   - host: mastermlgm.westeurope.cloudapp.azure.com
     http:
       paths:
-      - path: /volumes
+      - path: /
         pathType: "Prefix"
         backend:
           service:
-            name: volumes-service
+            name: jupyter-service
             port:
               number: 80

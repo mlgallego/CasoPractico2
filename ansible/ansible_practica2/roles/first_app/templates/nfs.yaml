@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: nfs-pv
-  namespace: webapp-volumes
+  namespace: jupyter
 spec:
   capacity:
     storage: 10Gi
@@ -22,7 +22,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nfs-pvc
-  namespace: webapp-volumes
+  namespace: jupyter
 spec:
   storageClassName: nfs
   accessModes:

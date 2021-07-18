@@ -18,7 +18,7 @@
 
 - name: Creamos namespace de la aplicacion
   shell: |
-         kubectl create namespace webapp-volumes 
+         kubectl create namespace jupyter 
 - name: Desplegamos la aplicacion
   shell: |
          kubectl apply -f myapps/first-app/{{ item }}

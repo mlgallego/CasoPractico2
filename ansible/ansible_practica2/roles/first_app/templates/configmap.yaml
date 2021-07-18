@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: haproxy-configmap
-  namespace: webapp-volumes
+  namespace: jupyter
 data:
   servers-increment: "42"
   ssl-redirect: "OFF"
