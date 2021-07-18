@@ -1,6 +1,7 @@
-# Creación de red
-# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network
+											                                                            [modify]
 
+
+# Creación de red [1]
 resource "azurerm_virtual_network" "azureNetwork" {
     name                = "kubernetesNetwork"
     address_space       = [var.ip_network]
@@ -12,9 +13,7 @@ resource "azurerm_virtual_network" "azureNetwork" {
     }
 }
 
-# Creación de subnet
-# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet
-
+# Creación de subnet [2]
 resource "azurerm_subnet" "azureSubnet" {
     name                   = "terraformSubnet"
     resource_group_name    = azurerm_resource_group.rg.name
@@ -23,9 +22,7 @@ resource "azurerm_subnet" "azureSubnet" {
 
 }
 
-# Create NIC
-# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface
-
+# Create NIC [3]
 resource "azurerm_network_interface" "nickGroup" {
   count               = length(var.machines)
   name                = "vmnic-${var.machines[count.index]}"  
@@ -47,9 +44,7 @@ resource "azurerm_network_interface" "nickGroup" {
 
 }
 
-# IP pública
-# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip
-
+# IP pública [4]
 resource "azurerm_public_ip" "publicGroup" {
 
     count               = length(var.machines)
@@ -65,3 +60,9 @@ resource "azurerm_public_ip" "publicGroup" {
     }
 
 }
+
+# Enlaces a los recursos:
+# [1]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network
+# [2]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet
+# [3]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface
+# [4]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip
