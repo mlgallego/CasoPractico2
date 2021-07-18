@@ -15,21 +15,22 @@ spec:
       labels:
         app: webapp-volumes
     spec:
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
       containers:
       - name: webapp-volumes
-        image: quay.io/rhte_2019/webapp:v1
+        image: jupyter/datascience-notebook:latest
         ports:
-        - containerPort: 80
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80 
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          successThreshold: 1
+        - containerPort: 8888
+        command:
+            - /bin/bash
+            - -c
+            - |
+              start.sh jupyter lab --LabApp.token='password' --LabApp.ip='0.0.0.0' --LabApp.allow_root=True
         volumeMounts:
         - name: site-pvc
-          mountPath: /var/www/public
+          mountPath: /home/root
       volumes:
       - name: site-pvc
         persistentVolumeClaim:
@@ -47,4 +48,4 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 8888
