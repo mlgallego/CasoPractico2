@@ -1,19 +1,19 @@
-- name: Enable firewall
+- name: Habilita el firewall
   systemd:
    name: firewalld
    state: started
    enabled: yes
 
-- name: Enable br_netfilter module
+- name: Habilita el módulo br_netfilter
   modprobe:
     name: br_netfilter
     state: present
 
-- name: activate transparent masquerading
+- name: Activa transparent masquerading
   shell: |
     firewall-cmd --add-masquerade --permanent
 
-- name: SDN firewall configuration 
+- name: Configuración del firewall del SDN 
   firewalld:
     port: "{{ item }}"
     permanent: true
@@ -22,18 +22,18 @@
      - 8472/udp
      - 8285/udp
 
-- name: reload firewalld
+- name: Recarga firewalld
   systemd: 
     name: firewalld
     state: reloaded
 
-- name: Create k8s file
+- name: Crea el archivo k8s
   copy: 
     dest: "/etc/sysctl.d/k8s.conf"
     content: |
       net.bridge.bridge-nf-call-ip6tables = 1
       net.bridge.bridge-nf-call-iptables = 1
 
-- name: set the firewall traffic reading values from all system directories
+- name: Establece los valores de lectura del tráfico del firewall de todos los directorios del sistema
   shell: |
          sysctl --system
