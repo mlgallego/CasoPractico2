@@ -1,4 +1,4 @@
-- name: Kubernetes repo
+- name: Coge el repo de Kubernetes
   copy: 
     dest: "/etc/yum.repos.d/kubernetes.repo"
     content: |
@@ -11,7 +11,7 @@
       gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
       exclude=kubelet kubeadm kubectl
 
-- name: install kubernetes utils
+- name: Instala kubernetes utils
   dnf:
     name: 
       - kubelet
@@ -20,7 +20,7 @@
     disable_excludes: kubernetes
     
 
-- name: Enable kubelet
+- name: Habilita kubelet
   systemd:
    name: kubelet
    state: started
