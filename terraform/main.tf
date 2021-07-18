@@ -1,4 +1,4 @@
-											      [modify]
+#											      [modify]
 
 
 # El bloque required_providers establece el origen (source) y la version  a emplear [1]
@@ -27,8 +27,8 @@ resource "azurerm_resource_group" "rg" {
 # Creación de cuenta de almacenamiento de Azure [3]
 resource "azurerm_storage_account" "storageAccount" {
     name                     = "accstor78452126"      # Nombre de la cuenta de almacenamiento.
-    							  Debe ser único en todo Azure,
-                                                        no solo dentro del grupo de recursos. 
+    							                                    #Debe ser único en todo Azure,
+                                                      #no solo dentro del grupo de recursos. 
     resource_group_name      = azurerm_resource_group.rg.name
     location                 = azurerm_resource_group.rg.location
     account_tier             = "Standard"             # Nivel de la cuenta de almacenamiento
