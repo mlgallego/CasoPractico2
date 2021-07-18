@@ -1,17 +1,17 @@
-- name: Enable nfs-server
+- name: Habilita el nfs-server
   shell: systemctl  enable nfs-server
 - name: Start  nfs-server
   shell: systemctl start nfs-server
 
-- name: Add a line to a file if the file does not exist, without passing regexp
+- name: Agrega la línea si el archivo existe, o crea el archivo con la línea si no existe 
   lineinfile:
     path: /etc/exports
     line: "/srv/nfs {{item}}(rw,sync)"
     create: yes
   with_items: "{{nfs_private_ip}}"
 
-- name: reload service exportfs
+- name: Relee el archivo del servicio exportfs
   shell: exportfs -r
 
-- name: reload service exportfs
+- name: Recarga el servicio exportfs
   shell: exportfs -s
