@@ -49,7 +49,7 @@ XXX@Azure: terraform destroy
 
 2. Desplegamos el playbook setup.yaml
 ```console
-XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts-azure setup.yaml
+XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts.azure setup.yaml
 ```
 > **_NOTE:_** Deberemos introducir “yes” tantas veces como maquinas tenga nuestro entorno, por defecto 3 veces
 
