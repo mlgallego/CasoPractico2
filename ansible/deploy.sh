@@ -1,5 +1,5 @@
 #!/bin/bash
-ansible-playbook -i hosts.azure setup.yaml
-ansible-playbook -i hosts.azure start_nfs.yaml
-ansible-playbook -i hosts.azure start_kube.yaml
-ansible-playbook -i hosts.azure deploy_first_app.yaml
+ansible-playbook -i hosts setup.yaml
+ansible-playbook -i hosts start_nfs.yaml
+ansible-playbook -i hosts start_kube.yaml
+ansible-playbook -i hosts deploy_first_app.yaml
