@@ -1,4 +1,4 @@
-- name: install nfs and wget utils
+- name: instalación de nfs and wget utils
   dnf:
     name: 
       - nfs-utils
