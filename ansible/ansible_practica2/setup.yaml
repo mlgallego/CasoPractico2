@@ -1,4 +1,4 @@
-- name: initial setup
+- name: Setup inicial
   hosts: [all]
   vars_files:
     - "group_vars/config_vars.yaml"
