@@ -1,4 +1,4 @@
-											                                            [modify]
+											     [modify]
 
 
 # Creación de máquinas virtuales [1]
