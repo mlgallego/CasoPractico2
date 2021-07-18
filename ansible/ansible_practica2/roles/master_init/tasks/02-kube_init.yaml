@@ -1,17 +1,17 @@
-- name: Configuramos kudeadm
+- name: Actualización de imágenes
   shell: |
           kubeadm config images pull
 
-- name: Iniciar Kubernetes
+- name: Inicialización de Kubernetes
   shell: |
           kubeadm init --pod-network-cidr "{{networkcidr}}"
 
-- name: Get token
+- name: Obtención del token
   shell: |
           kubeadm token create --print-join-command
   register: kube_token
 
-- name: Applying token to fact.
+- name: Guardamos el comando join.
   set_fact:
          kube_token: "{{kube_token.stdout_lines[0]}}"
 
