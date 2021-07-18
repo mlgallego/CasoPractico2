@@ -1,4 +1,4 @@
-- name: Master's firewall configuration "Po
+- name: Configura el firewall del master
   firewalld:
     port: "{{ item }}"
     permanent: true
@@ -11,14 +11,14 @@
      - 10252/tcp
      - 10255/tcp
 
-- name: Master's firewall configuration "Rich rule"
+- name: Configuracion del firewall master con las "Rich rule"
   firewalld:
     rich_rule: "{{ item }}"
     permanent: true
     state: enabled
   with_items: "{{rich_rule_ip}}"
 
-- name: reload service firewalld
+- name: Recarga el servicio de firewalld
   systemd:
     name: firewalld
     state: reloaded
