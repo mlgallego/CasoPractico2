@@ -4,14 +4,13 @@ una aplicación de forma automatizada en el entorno cloud de Azure empleando par
 - **Ansible** como software de gestión de configuración y despliegue de aplicaciones y 
 
 # Terraform
-## Arquitectura a desplegar en Terraform: 
-![Arquitectura a desplegar con Terraform](imagen/CONTRIBUTING.md)
+## Arquitectura a desplegar en Terraform
 
-![alt text](images/Terraform-Architecture.png)
+![Arquitectura a desplegar con Terraform](imagen/CONTRIBUTING.md)
 
 ##  Comandos para el despliegue de la arquitectura de Terraform en Azure
 1. Clonamos este repositorio y accedemos a la carperta terraform
-``` XXX@Azure: git clone https://github.com/mlgallego/CasoPractico2 ```
+```XXX@Azure: git clone https://github.com/mlgallego/CasoPractico2 
     XXX@Azure: cd CasoPractico2/terraform
 ```
 2. Genere un archivo credentials.tf y guardelo en la carpeta terraform (permite autenticar Terraform en Azure) 
@@ -27,7 +26,8 @@ una aplicación de forma automatizada en el entorno cloud de Azure empleando par
 
 5. Desplegamos la infraestructura de Terraform y la visualizamos
 ``` XXX@Azure: terraform apply 
-    XXX@Azure: terraform show ```
+    XXX@Azure: terraform show 
+```
 
 6. Si queremos destruir la infraestructura 
 ``` XXX@Azure: terraform destroy ```
