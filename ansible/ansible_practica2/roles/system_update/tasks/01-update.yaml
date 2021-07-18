@@ -1,8 +1,8 @@
-- name: update all machines
+- name: actualización de todas las máquinas
   dnf:
     name: "*"
     state: latest
 
-- name: Resetear Kubernetes
+- name: resetear Kubernetes
   shell: |
          sed -i s/=enforcing/=disabled/g /etc/selinux/config
