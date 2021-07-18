@@ -8,7 +8,7 @@ una aplicación (JupyterNotebook) de forma automatizada en el entorno cloud de A
 # Terraform
 ## Arquitectura a desplegar en Terraform
 
-![Arquitectura a desplegar con Terraform](imagen/CONTRIBUTING.md)
+![Arquitectura a desplegar con Terraform](images/Terraform-Architecture.png)
 
 ##  Comandos para el despliegue de la arquitectura de Terraform en Azure
 
@@ -51,7 +51,7 @@ XXX@Azure: terraform destroy
 ```console
 XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts-azure setup.yaml
 ```
-> ![IMPORTANT] Deberemos introducir “yes” tantas veces como maquinas tenga nuestro entorno, por defecto 3 veces
+> **_NOTE:_** Deberemos introducir “yes” tantas veces como maquinas tenga nuestro entorno, por defecto 3 veces
 
 3. Desplegamos el playbook start_nfs.yaml
 ```console
@@ -66,7 +66,7 @@ XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts-azure start_kube
 ```console
 XXX@Azure ~/CasoPractico2/ansible/: ansible-playbook –i hosts-azure deploy_first_app.yaml
 ```
-> ![IMPORTANT] Para acceder a la aplicación, debemos incluir nuestra IP en Azure para permitir el tráfico
+> **_NOTE:_** Para acceder a la aplicación, debemos incluir nuestra IP en Azure para permitir el tráfico
 
 Volevemos a conectarnos por ssh 
 ```console
