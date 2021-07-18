@@ -1,4 +1,4 @@
-											                                              [modify]
+								                 [modify]
 
 
 # Security group [1]
@@ -32,6 +32,6 @@ resource "azurerm_network_interface_security_group_association" "secGroupAssocia
 
 }
 
-# Enlaces a los recursos:
+# Enlace a los recursos:
 # [1]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group
 # [2]https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association
